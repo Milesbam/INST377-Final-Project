@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dune Books</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Dune Books</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="dune.html">Dune Data</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Book List</h2>
+    <ul id="books-list"></ul>
+  </main>
+
+  <script>
+
+     fetch('/api/books')
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById('books-list');
+      data.forEach(book => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${book.title}</strong> (${book.year})<br>Author: ${book.author}<br><a href="${book.wiki_url}" target="_blank">Wiki</a>`;
+        list.appendChild(li);
+      });
+    })
+    .catch(err => console.error('Error fetching books:', err));
+
+  </script>
+
+<script src="js/books.js"></script>
+<div class="voice-controls">
+  <h3>🎙 Voice Navigation</h3>
+  <ul>
+    <li>Say: <strong>Go to home</strong></li>
+    <li>Say: <strong>Go to about</strong></li>
+    <li>Say: <strong>Go to books</strong></li>
+    <li>Say: <strong>Go to quotes</strong></li>
+    <li>Say: <strong>Go to series</strong></li>
+  </ul>
+  <button id="start-voice">Start Listening</button>
+  <button id="stop-voice">Stop Listening</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<script src="js/voice.js"></script>
+
+
+</body>
+
+</html>

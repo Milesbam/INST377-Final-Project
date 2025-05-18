@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dune Series</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Dune Series</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="dune.html">Dune Data</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Series List</h2>
+    <ul id="series-list"></ul>
+    <h3>Series Release Years</h3>
+    <canvas id="seriesChart" width="600" height="400"></canvas>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    fetch('/api/series')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('series-list');
+        const yearCounts = {};
+
+        data.forEach(series => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${series.title}</strong> (${series.year})<br>Director: ${series.director || 'Unknown'}<br><a href="${series.wiki_url}" target="_blank">Wiki</a>`;
+          list.appendChild(li);
+
+          
+          const year = series.year || 'Unknown';
+          yearCounts[year] = (yearCounts[year] || 0) + 1;
+        });
+
+        const labels = Object.keys(yearCounts);
+        const values = Object.values(yearCounts);
+
+        const ctx = document.getElementById('seriesChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: '# of Series Released',
+              data: values,
+              backgroundColor: 'rgba(153, 102, 255, 0.6)',
+              borderColor: 'rgba(153, 102, 255, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { precision: 0 }
+              }
+            }
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching series:', err);
+        document.getElementById('series-list').textContent = 'Failed to load series.';
+      });
+  </script>
+
+  <div class="voice-controls">
+    <h3>🎙 Voice Navigation</h3>
+    <ul>
+      <li>Say: <strong>Go to home</strong></li>
+      <li>Say: <strong>Go to about</strong></li>
+      <li>Say: <strong>Go to books</strong></li>
+      <li>Say: <strong>Go to quotes</strong></li>
+      <li>Say: <strong>Go to series</strong></li>
+    </ul>
+    <button id="start-voice">Start Listening</button>
+    <button id="stop-voice">Stop Listening</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/series.js"></script>
+
+
+</body>
+</html>

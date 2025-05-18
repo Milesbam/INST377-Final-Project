@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Explore the Dune API</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Explore the Dune API</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="dune.html">Dune Data</a>
+  
+    </nav>
+  </header>
+
+  <main>
+    <h2>Choose a Category</h2>
+    <div class="button-row">
+      <button onclick="location.href='books.html'">Books</button>
+      <button onclick="location.href='quotes.html'">Quotes</button>
+      <button onclick="location.href='series.html'">Series</button>
+    </div>
+  </main>
+
+  <div class="voice-controls">
+    <h3>🎙 Voice Navigation</h3>
+    <ul>
+      <li>Say: <strong>Go to home</strong></li>
+      <li>Say: <strong>Go to about</strong></li>
+      <li>Say: <strong>Go to books</strong></li>
+      <li>Say: <strong>Go to quotes</strong></li>
+      <li>Say: <strong>Go to series</strong></li>
+    </ul>
+    <button id="start-voice">Start Listening</button>
+    <button id="stop-voice">Stop Listening</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="js/voice.js"></script>
+  
+
+
+</body>
+</html>

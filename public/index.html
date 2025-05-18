@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dune Project - Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+  <header>
+    <h1 class="animate__animated animate__fadeInDown">Welcome to Dune Explorer</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="dune.html">Dune Data</a>
+    </nav>
+  </header>
+  <main>
+    <section id="random-quote">
+      <h2>Welcome to the Dune Universe!</h2>
+      <p> Explore quotes, books, and series from the world of Dune using our custom API. </p>
+
+      <h3> Your daily dune quote:</h3> 
+      <p id="quote-text">Loading quote...</p>
+
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+
+  <div class="voice-controls">
+    <h3>🎙 Voice Navigation</h3>
+    <ul>
+      <li>Say: <strong>Go to home</strong></li>
+      <li>Say: <strong>Go to about</strong></li>
+      <li>Say: <strong>Go to books</strong></li>
+      <li>Say: <strong>Go to quotes</strong></li>
+      <li>Say: <strong>Go to series</strong></li>
+    </ul>
+    <button id="start-voice">Start Listening</button>
+    <button id="stop-voice">Stop Listening</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+  <script src="js/voice.js"></script>
+  
+
+</body>
+</html>
